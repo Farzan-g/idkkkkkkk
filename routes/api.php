@@ -26,8 +26,8 @@ Route::get('/test/get', [FirstController::class, 'example']);
 Route::get('/test', [FirstController::class, 'index']);
 Route::get('/test/show/{id}', [FirstController::class, 'show']);
 Route::post('/test/create', [FirstController::class, 'create']);
-Route::put('/test/update{id}', [FirstController::class, 'update']);
-Route::delete('/test/delete{id}', [FirstController::class, 'delete']);
+Route::put('/test/update/{id}', [FirstController::class, 'update']);
+Route::delete('/test/delete/{id}', [FirstController::class, 'delete']);
 
 
 
@@ -39,7 +39,7 @@ Route::get('/test-models', function () {
 // Create a new test model
 Route::post('/test-models', function (Request $request) {
     $request->validate([
-        'test' => 'required|string|max:255'
+        'tests' => 'required|string|max:255'
     ]);
 
     $testModel = Test::create($request->all());
@@ -55,7 +55,7 @@ Route::get('/test-models/{id}', function ($id) {
 // Update a test model by ID
 Route::put('/test-models/{id}', function (Request $request, $id) {
     $request->validate([
-        'test' => 'required|string|max:255'
+        'tests' => 'required|string|max:255'
     ]);
 
     $testModel = Test::findOrFail($id);

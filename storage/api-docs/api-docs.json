@@ -34,6 +34,83 @@
                 }
             }
         },
+        "/api/test": {
+            "get": {
+                "tags": [
+                    "Item"
+                ],
+                "summary": "Get all items",
+                "description": "Returns a list of all items.",
+                "operationId": "96b764f7f10f7cf8e24d6e2db52d5e9d",
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "test": {
+                                            "type": "string",
+                                            "example": "Item Name"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/test/show/{id}": {
+            "get": {
+                "tags": [
+                    "Item"
+                ],
+                "summary": "Get item by ID",
+                "description": "Returns a single item by ID.",
+                "operationId": "fde9511874e4ced4d8ff340444da2942",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "test": {
+                                            "type": "string",
+                                            "example": "Item Name"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Item not found"
+                    }
+                }
+            }
+        },
         "/api/test/create": {
             "post": {
                 "tags": [
@@ -106,7 +183,7 @@
                         "application/json": {
                             "schema": {
                                 "properties": {
-                                    "test": {
+                                    "tests": {
                                         "type": "string",
                                         "example": "Updated Name"
                                     }
@@ -127,7 +204,7 @@
                                             "type": "integer",
                                             "example": 1
                                         },
-                                        "test": {
+                                        "tests": {
                                             "type": "string",
                                             "example": "Updated Name"
                                         }

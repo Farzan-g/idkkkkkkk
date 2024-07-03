@@ -50,8 +50,17 @@ class FirstController extends Controller
      *         response=200,
      *         description="Successful response",
      *         @OA\JsonContent(
-     *             type="array",
-     *             @OA\Items(ref="#/components/schemas/Item")
+     *             type="object",
+     *             @OA\Property(
+     *                 property="id",
+     *                 type="integer",
+     *                 example=1
+     *             ),
+     *             @OA\Property(
+     *                 property="tests",
+     *                 type="string",
+     *                 example="Item Name"
+     *             )
      *         )
      *     )
      * )
@@ -79,7 +88,19 @@ class FirstController extends Controller
      *     @OA\Response(
      *         response=200,
      *         description="Successful response",
-     *         @OA\JsonContent(ref="#/components/schemas/Item")
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(
+     *                 property="id",
+     *                 type="integer",
+     *                 example=1
+     *             ),
+     *             @OA\Property(
+     *                 property="tests",
+     *                 type="string",
+     *                 example="Item Name"
+     *             )
+     *         )
      *     ),
      *     @OA\Response(
      *         response=404,
@@ -110,7 +131,7 @@ class FirstController extends Controller
      *         required=true,
      *         @OA\JsonContent(
      *             type="object",
-     *             @OA\Property(property="test", type="string", example="Item Name"),
+     *             @OA\Property(property="tests", type="string", example="Item Name"),
      *         )
      *     ),
      *     @OA\Response(
@@ -119,7 +140,7 @@ class FirstController extends Controller
      *         @OA\JsonContent(
      *             type="object",
      *             @OA\Property(property="id", type="integer", example=1),
-     *             @OA\Property(property="test", type="string", example="Item Name"),
+     *             @OA\Property(property="tests", type="string", example="Item Name"),
      *         )
      *     )
      * )
@@ -153,7 +174,7 @@ class FirstController extends Controller
      *         required=true,
      *         @OA\JsonContent(
      *             type="object",
-     *             @OA\Property(property="test", type="string", example="Updated Name"),
+     *             @OA\Property(property="tests", type="string", example="Updated Name"),
      *         )
      *     ),
      *     @OA\Response(
@@ -162,7 +183,7 @@ class FirstController extends Controller
      *         @OA\JsonContent(
      *             type="object",
      *             @OA\Property(property="id", type="integer", example=1),
-     *             @OA\Property(property="test", type="string", example="Updated Name"),
+     *             @OA\Property(property="tests", type="string", example="Updated Name"),
      *         )
      *     )
      * )
