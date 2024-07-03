@@ -1,0 +1,169 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "My Awesome API",
+        "description": "This is a description of your API.",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/test/get": {
+            "get": {
+                "tags": [
+                    "Example"
+                ],
+                "summary": "Example endpoint",
+                "description": "Example endpoint description",
+                "operationId": "29378079b25d837297433865803f5b4c",
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "string",
+                                            "example": "This is an example endpoint"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/test/create": {
+            "post": {
+                "tags": [
+                    "Item"
+                ],
+                "summary": "Create item",
+                "description": "Creates a new item.",
+                "operationId": "e5ebe5a2b01e6649d6c50340cce9e893",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "test": {
+                                        "type": "string",
+                                        "example": "Item Name"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Item created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "test": {
+                                            "type": "string",
+                                            "example": "Item Name"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/test/update/{id}": {
+            "put": {
+                "tags": [
+                    "Item"
+                ],
+                "summary": "Update item",
+                "description": "Updates an existing item.",
+                "operationId": "30e691a85b875b1a1f7e829833b8e670",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "test": {
+                                        "type": "string",
+                                        "example": "Updated Name"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Item updated",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "test": {
+                                            "type": "string",
+                                            "example": "Updated Name"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/test/delete/{id}": {
+            "delete": {
+                "tags": [
+                    "Item"
+                ],
+                "summary": "Delete item",
+                "description": "Deletes an existing item.",
+                "operationId": "ee1765caca35fc34f16a647304117d04",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Item deleted"
+                    }
+                }
+            }
+        }
+    }
+}
