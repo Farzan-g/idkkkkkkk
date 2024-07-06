@@ -1,4 +1,4 @@
-version: '3'
+version: '3.4'
 services:
 
   app:
@@ -19,8 +19,8 @@ services:
       - "5432:5432"
     environment:
       POSTGRES_DB: laravel
-      POSTGRES_USER: admin
-      POSTGRES_PASSWORD: admin
+      POSTGRES_USER: laravel
+      POSTGRES_PASSWORD: laravel
     volumes:
       - db-data:/var/lib/postgresql/data
     networks:
