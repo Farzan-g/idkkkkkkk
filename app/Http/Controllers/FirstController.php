@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Test;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 /**
  * @OA\Info(
@@ -44,22 +45,18 @@ class FirstController extends Controller
      * @OA\Get(
      *     path="/api/test",
      *     summary="Get all items",
-     *     description="Returns a list of all items.",
      *     tags={"Item"},
      *     @OA\Response(
      *         response=200,
-     *         description="Successful response",
+     *         description="Success",
      *         @OA\JsonContent(
-     *             type="object",
-     *             @OA\Property(
-     *                 property="id",
-     *                 type="integer",
-     *                 example=1
-     *             ),
-     *             @OA\Property(
-     *                 property="tests",
-     *                 type="string",
-     *                 example="Item Name"
+     *             type="array",
+     *             @OA\Items(
+     *                 type="object",
+     *                 @OA\Property(property="id", type="integer", example=1),
+     *                 @OA\Property(property="tests", type="string", example="Test content"),
+     *                 @OA\Property(property="created_at", type="string", format="date-time", example="2021-01-01T00:00:00Z"),
+     *                 @OA\Property(property="updated_at", type="string", format="date-time", example="2021-01-01T00:00:00Z")
      *             )
      *         )
      *     )
@@ -77,7 +74,6 @@ class FirstController extends Controller
      * @OA\Get(
      *     path="/api/test/show/{id}",
      *     summary="Get item by ID",
-     *     description="Returns a single item by ID.",
      *     tags={"Item"},
      *     @OA\Parameter(
      *         name="id",
@@ -87,25 +83,16 @@ class FirstController extends Controller
      *     ),
      *     @OA\Response(
      *         response=200,
-     *         description="Successful response",
+     *         description="Success",
      *         @OA\JsonContent(
      *             type="object",
-     *             @OA\Property(
-     *                 property="id",
-     *                 type="integer",
-     *                 example=1
-     *             ),
-     *             @OA\Property(
-     *                 property="tests",
-     *                 type="string",
-     *                 example="Item Name"
-     *             )
+     *             @OA\Property(property="id", type="integer", example=1),
+     *             @OA\Property(property="tests", type="string", example="Test content"),
+     *             @OA\Property(property="created_at", type="string", format="date-time", example="2021-01-01T00:00:00Z"),
+     *             @OA\Property(property="updated_at", type="string", format="date-time", example="2021-01-01T00:00:00Z")
      *         )
      *     ),
-     *     @OA\Response(
-     *         response=404,
-     *         description="Item not found"
-     *     )
+     *     @OA\Response(response=404, description="Item not found")
      * )
      */
     public function show($id)
@@ -124,23 +111,24 @@ class FirstController extends Controller
     /**
      * @OA\Post(
      *     path="/api/test/create",
-     *     summary="Create item",
-     *     description="Creates a new item.",
+     *     summary="Create new item",
      *     tags={"Item"},
      *     @OA\RequestBody(
      *         required=true,
      *         @OA\JsonContent(
      *             type="object",
-     *             @OA\Property(property="tests", type="string", example="Item Name"),
+     *             @OA\Property(property="tests", type="string", example="Test content")
      *         )
      *     ),
      *     @OA\Response(
      *         response=201,
-     *         description="Item created",
+     *         description="Created",
      *         @OA\JsonContent(
      *             type="object",
      *             @OA\Property(property="id", type="integer", example=1),
-     *             @OA\Property(property="tests", type="string", example="Item Name"),
+     *             @OA\Property(property="tests", type="string", example="Test content"),
+     *             @OA\Property(property="created_at", type="string", format="date-time", example="2021-01-01T00:00:00Z"),
+     *             @OA\Property(property="updated_at", type="string", format="date-time", example="2021-01-01T00:00:00Z")
      *         )
      *     )
      * )
@@ -150,7 +138,7 @@ class FirstController extends Controller
         // Assuming you have a model named Item
         // $item = Test::create($request->all());
         $item = new Test();
-        $item->tests = $request->input('test');
+        $item->tests = $request->input('tests');
         $item->save();
 
         return response()->json($item, 201);
@@ -202,7 +190,6 @@ class FirstController extends Controller
      * @OA\Delete(
      *     path="/api/test/delete/{id}",
      *     summary="Delete item",
-     *     description="Deletes an existing item.",
      *     tags={"Item"},
      *     @OA\Parameter(
      *         name="id",
@@ -210,10 +197,7 @@ class FirstController extends Controller
      *         required=true,
      *         @OA\Schema(type="integer")
      *     ),
-     *     @OA\Response(
-     *         response=204,
-     *         description="Item deleted"
-     *     )
+     *     @OA\Response(response=204, description="No Content")
      * )
      */
     public function delete($id)
@@ -222,4 +206,31 @@ class FirstController extends Controller
 
         return response()->json(null, 204);
     }
+
+    // -----------show last id-----------
+
+    /**
+     * @OA\Get(
+     *     path="/api/test/last",
+     *     summary="Get last item",
+     *     tags={"Item"},
+     *     @OA\Response(
+     *         response=200,
+     *         description="Success",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(property="id", type="integer", example=1),
+     *             @OA\Property(property="tests", type="string", example="Test content"),
+     *             @OA\Property(property="created_at", type="string", format="date-time", example="2021-01-01T00:00:00Z"),
+     *             @OA\Property(property="updated_at", type="string", format="date-time", example="2021-01-01T00:00:00Z")
+     *         )
+     *     )
+     * )
+     */
+    public function lastId()
+    {
+        $items = DB::table('tests')->latest('id')->first();
+        return response()->json($items);
+    }
+
 }

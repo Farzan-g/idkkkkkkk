@@ -30,6 +30,9 @@ Route::put('/test/update/{id}', [FirstController::class, 'update']);
 Route::delete('/test/delete/{id}', [FirstController::class, 'delete']);
 
 
+Route::get('/test/last', [FirstController::class, 'lastId']);
+
+
 
 Route::get('/test-models', function () {
     $testModels = Test::all();

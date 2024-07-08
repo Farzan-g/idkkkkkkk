@@ -40,25 +40,37 @@
                     "Item"
                 ],
                 "summary": "Get all items",
-                "description": "Returns a list of all items.",
                 "operationId": "96b764f7f10f7cf8e24d6e2db52d5e9d",
                 "responses": {
                     "200": {
-                        "description": "Successful response",
+                        "description": "Success",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "properties": {
-                                        "id": {
-                                            "type": "integer",
-                                            "example": 1
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "id": {
+                                                "type": "integer",
+                                                "example": 1
+                                            },
+                                            "tests": {
+                                                "type": "string",
+                                                "example": "Test content"
+                                            },
+                                            "created_at": {
+                                                "type": "string",
+                                                "format": "date-time",
+                                                "example": "2021-01-01T00:00:00Z"
+                                            },
+                                            "updated_at": {
+                                                "type": "string",
+                                                "format": "date-time",
+                                                "example": "2021-01-01T00:00:00Z"
+                                            }
                                         },
-                                        "tests": {
-                                            "type": "string",
-                                            "example": "Item Name"
-                                        }
-                                    },
-                                    "type": "object"
+                                        "type": "object"
+                                    }
                                 }
                             }
                         }
@@ -72,7 +84,6 @@
                     "Item"
                 ],
                 "summary": "Get item by ID",
-                "description": "Returns a single item by ID.",
                 "operationId": "fde9511874e4ced4d8ff340444da2942",
                 "parameters": [
                     {
@@ -86,7 +97,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Successful response",
+                        "description": "Success",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -97,7 +108,17 @@
                                         },
                                         "tests": {
                                             "type": "string",
-                                            "example": "Item Name"
+                                            "example": "Test content"
+                                        },
+                                        "created_at": {
+                                            "type": "string",
+                                            "format": "date-time",
+                                            "example": "2021-01-01T00:00:00Z"
+                                        },
+                                        "updated_at": {
+                                            "type": "string",
+                                            "format": "date-time",
+                                            "example": "2021-01-01T00:00:00Z"
                                         }
                                     },
                                     "type": "object"
@@ -116,8 +137,7 @@
                 "tags": [
                     "Item"
                 ],
-                "summary": "Create item",
-                "description": "Creates a new item.",
+                "summary": "Create new item",
                 "operationId": "e5ebe5a2b01e6649d6c50340cce9e893",
                 "requestBody": {
                     "required": true,
@@ -127,7 +147,7 @@
                                 "properties": {
                                     "tests": {
                                         "type": "string",
-                                        "example": "Item Name"
+                                        "example": "Test content"
                                     }
                                 },
                                 "type": "object"
@@ -137,7 +157,7 @@
                 },
                 "responses": {
                     "201": {
-                        "description": "Item created",
+                        "description": "Created",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -148,7 +168,17 @@
                                         },
                                         "tests": {
                                             "type": "string",
-                                            "example": "Item Name"
+                                            "example": "Test content"
+                                        },
+                                        "created_at": {
+                                            "type": "string",
+                                            "format": "date-time",
+                                            "example": "2021-01-01T00:00:00Z"
+                                        },
+                                        "updated_at": {
+                                            "type": "string",
+                                            "format": "date-time",
+                                            "example": "2021-01-01T00:00:00Z"
                                         }
                                     },
                                     "type": "object"
@@ -223,7 +253,6 @@
                     "Item"
                 ],
                 "summary": "Delete item",
-                "description": "Deletes an existing item.",
                 "operationId": "ee1765caca35fc34f16a647304117d04",
                 "parameters": [
                     {
@@ -237,7 +266,48 @@
                 ],
                 "responses": {
                     "204": {
-                        "description": "Item deleted"
+                        "description": "No Content"
+                    }
+                }
+            }
+        },
+        "/api/test/last": {
+            "get": {
+                "tags": [
+                    "Item"
+                ],
+                "summary": "Get last item",
+                "operationId": "07336cf5e582a8b92474bd3cebd38fab",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "tests": {
+                                            "type": "string",
+                                            "example": "Test content"
+                                        },
+                                        "created_at": {
+                                            "type": "string",
+                                            "format": "date-time",
+                                            "example": "2021-01-01T00:00:00Z"
+                                        },
+                                        "updated_at": {
+                                            "type": "string",
+                                            "format": "date-time",
+                                            "example": "2021-01-01T00:00:00Z"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
                     }
                 }
             }
