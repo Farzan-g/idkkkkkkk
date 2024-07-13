@@ -1,4 +1,4 @@
-version: '3.4'
+version: '3.8'
 services:
 
   app:
@@ -12,6 +12,7 @@ services:
       - ./:/app
     networks:
       - laravel
+    entrypoint: ["/bin/sh", "-c", "php artisan key:generate && php-fpm"]
 
   db:
     image: postgres:12
@@ -46,6 +47,18 @@ services:
     environment:
       - RABBITMQ_DEFAULT_USER=guest
       - RABBITMQ_DEFAULT_PASS=guest
+    networks:
+      - laravel
+
+  scheduler:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/app
+    entrypoint: ["/bin/sh", "-c", "while :; do php artisan schedule:work; sleep 60; done"]
+    depends_on:
+      - app
 
 volumes:
   db-data:
