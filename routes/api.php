@@ -32,6 +32,8 @@ Route::delete('/test/delete/{id}', [FirstController::class, 'delete']);
 
 Route::get('/test/last', [FirstController::class, 'lastId']);
 
+// Route::get('/get-date-api', [FirstController::class, 'getDateApi']);
+
 
 
 Route::get('/test-models', function () {

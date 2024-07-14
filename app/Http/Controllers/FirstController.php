@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Test;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Http;
 
 /**
  * @OA\Info(
@@ -38,6 +39,25 @@ class FirstController extends Controller
     {
         return response()->json(['data' => 'This is an example endpoint']);
     }
+
+    // // -----------show last id-----------
+
+    // /**
+    //  * @OA\Get(
+    //  *     path="/api/get-date-api",
+    //  *     summary="get date from an api",
+    //  *     tags={"date api"},
+    //  *     @OA\Response(
+    //  *         response=200,
+    //  *         description="Success"
+    //  *     )
+    //  * )
+    //  */
+    // public function getDateApi()
+    // {
+    //     $response = Http::get('http://holidayapi.ir/jalali/1403/2/5');
+    //     return $response->json();
+    // }
 
     // -----------index for get all-----------
 
